@@ -4,7 +4,7 @@ This repo is going to be used for the purpose of easily setting up a server, and
 ## Getting The Script
 Cloning it to your machine:
 - ```cd ~/path/to/clone/repo```
-- ```git clone git@bits.linode.com:drearden\New-Server-Setup```
+- ```git clone https://github.com/haircutfish/New-Server-Setup.git```
 
 Using this way, you can make changes to the scripts that you would see fit, or even improve upon it.  You can then [SCP](https://www.linode.com/docs/guides/how-to-use-scp/#how-to-transfer-files-from-a-local-system-to-a-remote-server-using-scp) the file onto the server.
 
