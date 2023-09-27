@@ -2,13 +2,8 @@
 This repo is going to be used for the purpose of easily setting up a server, and having it secure.  In setting up the server these scripts will set the Hostname/Machine's name, Timezone, and created a either a Limited User or Sudo User.  
 
 ## Getting The Script
-Cloning it to your machine:
-- ```cd ~/path/to/clone/repo```
-- ```git clone https://github.com/haircutfish/New-Server-Setup.git```
-
-Using this way, you can make changes to the scripts that you would see fit, or even improve upon it.  You can then [SCP](https://www.linode.com/docs/guides/how-to-use-scp/#how-to-transfer-files-from-a-local-system-to-a-remote-server-using-scp) the file onto the server.
-
-The other way would be to go to the script you would like to use.  Then on the server, use your text editor of choice.  Copy and paste the code into the text editor, and save it onto the server.
+Use `wget` to download the script to your server.  You will to get the `raw.githubusercontent.com` URL for the script you want to use then use the following command:
+```wget {url of the setup script}```
 
 ## Before Running The Script
 Before you can run the scripts properly, you will need to set a couple of variables.  Those being Username, Hostname/Machine's Name, and Timezone with the variables:
