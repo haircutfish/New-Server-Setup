@@ -1,5 +1,16 @@
 # New Server Setup
-This repo is going to be used for the purpose of easily setting up a server, and having it secure.  In setting up the server these scripts will set the Hostname/Machine's name, Timezone, and created a either a Limited User or Sudo User.  
+This repo is going to be used for the purpose of easily setting up a server, and having it secure.  What these scripts do:  
+- Update the server
+- Install and set up Automatic Updates for Security updates
+- Set Timezone**
+- Set Hostname/Machine name
+- Create a Limited User and sets their password
+- Installs Fail2Ban
+- Installs Firewalld, then configures it to open ports associated to SSH and LISH
+- Finally Reboots the system
+
+**To assign the correct Timezone, here is a Gist with the all Timezones:
+https://gist.github.com/alejzeis/ad5827eb14b5c22109ba652a1a267af5
 
 ## Getting The Script
 Use `wget` to download the script to your server.  You will to get the `raw.githubusercontent.com` URL for the script you want to use then use the following command:
