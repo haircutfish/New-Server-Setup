@@ -22,7 +22,7 @@ Before you can run the scripts properly, you will need to set a couple of variab
 username=
 password=
 lm_name=
-timezone='
+timezone=''
 ```
 
 Also you can make the user you create a sudo user by uncommenting the following line:
