@@ -20,8 +20,9 @@ Use `wget` to download the script to your server.  You will to get the `raw.gith
 Before you can run the scripts properly, you will need to set a couple of variables.  Those being Username, Hostname/Machine's Name, and Timezone with the variables:
 ```
 username=
+password=
 lm_name=
-timezone=''
+timezone='
 ```
 
 Also you can make the user you create a sudo user by uncommenting the following line:
