@@ -9,10 +9,15 @@
 # here is a Gist with the all Timezones:
 # https://gist.github.com/alejzeis/ad5827eb14b5c22109ba652a1a267af5
 # Place the Timezone name between the single qoutes.
-username=
-password=
-lm_name=
-timezone=''
+USERNAME=
+PASSWORD=
+LM_NAME=
+TIMEZONE=
+
+if [ -z "$USERNAME" ] || [ -z "$PASSWORD" ] || [ -z "$LM_NAME" ] || [ -z "$TIMEZONE" ]; then
+    echo "One or more required variables are empty. Exiting the script."
+    exit 1
+fi
 
 # Updating the system
 apt update && apt upgrade -y
@@ -23,23 +28,22 @@ echo unattended-upgrades unattended-upgrades/enable_auto_updates boolean true | 
 dpkg-reconfigure -f noninteractive unattended-upgrades
 
 # Set timezone
-timedatectl set-timezone "$timezone"
+timedatectl set-timezone "$TIMEZONE"
 
 # Setting hostname/machine name
-hostnamectl set-hostname "$lm_name"
+hostnamectl set-hostname "$LM_NAME"
 
 # creating a limited user
-useradd -m -s /bin/bash "$username"
-echo "$username":"$password" | chpasswd
+useradd -m -s /bin/bash "$USERNAME"
+echo "$USERNAME":"$PASSWORD" | chpasswd -c SHA256
 
 # If you want the user as a Sudoer, uncomment out the next line
-#adduser "$username" sudo
+#adduser "$USERNAME" sudo
 
 # Install and set up Firewalld
-apt install firewalld -y
-firewall-cmd --set-default-zone=block
-firewall-cmd --zone=block --add-port=22/tcp --permanent
-firewall-cmd --reload
+apt install ufw -y
+ufw allow 22
+ufw enable
 
 # Restarting Server
 reboot now
