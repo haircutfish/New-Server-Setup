@@ -9,10 +9,15 @@
 # here is a Gist with the all Timezones:
 # https://gist.github.com/alejzeis/ad5827eb14b5c22109ba652a1a267af5
 # Place the Timezone name between the single qoutes.
-username=
-password=
-lm_name=
-timezone=''
+USERNAME=
+PASSWORD=
+LM_NAME=
+TIMEZONE=
+
+if [ -z "$USERNAME" ] || [ -z "$PASSWORD" ] || [ -z "$LM_NAME" ] || [ -z "$TIMEZONE" ]; then
+    echo "One or more required variables are empty. Exiting the script."
+    exit 1
+fi
 
 # Updating the system
 dnf upgrade -y
@@ -23,23 +28,22 @@ sed -i 's/upgrade_type = default/upgrade_type = security/g' /etc/dnf/automatic.c
 sed -i 's/apply_updates = no/apply_updates = yes/g' /etc/dnf/automatic.conf
 
 # Set timezone
-timedatectl set-timezone "$timezone"
+timedatectl set-timezone "$TIMEZONE"
 
 # Setting hostname/machine name
-hostnamectl set-hostname "$lm_name"
+hostnamectl set-hostname "$LM_NAME"
 
 # creating a limited user
-useradd -m -s /bin/bash "$username"
-echo "$username":"$password" | chpasswd
+useradd -m -s /bin/bash "$USERNAME"
+echo "$USERNAME":"$PASSWORD" | chpasswd -c SHA256
 
 # If you want the user as a Sudoer, uncomment out the next line
-#usermod -aG wheel $username
+#usermod -aG wheel $USERNAME
 
-# Install Firewalld and configure it
-firewall-cmd --set-default-zone=block
-firewall-cmd --zone=block --add-port=22/tcp --permanent
-firewall-cmd --reload
-
+# Install ufw and configure it
+yum install ufw -y
+ufw allow 22
+ufw enable
 
 # Restarting Server
 reboot now
